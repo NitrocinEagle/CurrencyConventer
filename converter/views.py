@@ -14,9 +14,6 @@ from converter.serializers import CurrencyRateRUBSerializer
 from converter.models import CurrencyRateRUB
 
 class CurrencyRateRUBViewSet(viewsets.ModelViewSet):
-    """API endpoint that allows users to be viewed or edited.
-
-    """
     queryset = CurrencyRateRUB.objects.all().order_by('-timestamp')
     serializer_class = CurrencyRateRUBSerializer
 
