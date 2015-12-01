@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'converter/css/style.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'converter/css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'converter/css/bootstrap-theme.min.css' %}" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+        <script src="{% static 'converter/js/jquery.js' %}"></script>
+        <script src="{% static 'converter/js/converter.js' %}"></script>
+        <script src="{% static 'converter/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'converter/js/npm.js' %}"></script>
+        <title>Конвертер валют</title>
+    </head>
+
+    
+    <body>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading" align="center">Конвертер валют</div>
+  <div class="panel-body">
+
+                <div class="tabs">
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active"><a href="#converter" data-toggle="tab">Конвертер</a></li>
+                        <li><a href="#current_rates" data-toggle="tab">Текущий обменный курс</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="converter">
+                            <br>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            Валюта для продажи
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon" data-bind="text: currencySymbol "></span>
+                                                <select class="form-control" data-bind="options: optionValues, selectedOptions: selectedCurrencyForSell, click: changedOptionValue"></select>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+                                            Сумма:
+                                            <div class="input-group">
+                                                <input type="text" size="100%" class="form-control" placeholder="Введите сумму денег" data-bind="value: moneyForSell">
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div style="display: block; margin-left: auto; margin-top: 30%; auto; margin-right: auto;">
+                                        <button type="button" class="btn btn-success btn-block" data-bind="click: sellClicked">Продать</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <table class="table table-condensed table-bordered table-striped info">
+                                        <thead>
+                                            <tr><td><b>Валюта покупки</b></td><td><b>Сумма покупки</b></td></tr>
+                                        </thead>
+                                        <tbody data-bind="foreach: exchangedCurrencies">
+                                            <tr>
+                                                <td data-bind="text: currency"></td>
+                                                <td data-bind="text: sum"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="current_rates">
+                            <table class="table table-condensed table-bordered table-striped info">
+                                        <thead>
+                                            <tr><td><b>Валюта</b></td><td><b>Курс за 1 рубль</b></td></tr>
+                                        </thead>
+                                        <tbody data-bind="foreach: currentRatesRUB">
+                                            <tr>
+                                                <td data-bind="text: currency"></td>
+                                                <td data-bind="text: rate"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <!-- Nav tabs -->
+    </body>
+</html>
